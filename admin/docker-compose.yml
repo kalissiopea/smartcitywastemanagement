@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  admin:
+    image: openjdk:19
+    container_name: adminimage
+    ports:
+      - 8080:8080
+    expose:
+      - "8080"
+    depends_on:
+      - my-db
+    networks:
+      - my-net
+      - smartcitywastemanagement_main-net
+    volumes:
+      - ./build/libs/admin-0.0.1-SNAPSHOT.jar:/app/app.jar
+    working_dir: /app
+    entrypoint: java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar /app/app.jar
+  my-db:
+    image: mongo:5.0
+    container_name: mongodbimage
+    ports:
+      - 27017:27017
+    networks:
+      - my-net
+networks:
+  my-net:
+    driver:
+      "bridge"
+  smartcitywastemanagement_main-net:
+    driver:
+      "bridge"
+    external: true
