@@ -16,12 +16,10 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.HashSet;
 import java.util.Set;
 
-//creiamo un nostro filtro personalizzato da inserire nella configurazione
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtUtilities jwtUtilities ;
@@ -35,18 +33,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String authorizationHeader = request.getHeader("Authorization");
 
-        String username = null;
         String jwt = null;
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
-            username = jwtUtilities.extractUsername(jwt);
         }
 
+        if (jwt != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
-            UserDetails userDetails = this.customerUserDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = this.customerUserDetailsService.loadUserByUsername(jwtUtilities.extractUsername(jwt));
 
             if (jwtUtilities.validateToken(jwt, userDetails)) {
 
@@ -55,24 +50,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
                 });
 
-
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, /*userDetails.getAuthorities()*/ authorities);
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        userDetails, null, authorities);
+                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
 
-        // Aggiungi il token come parametro nella richiesta URL
         if (jwt != null) {
-            String modifiedUrl = request.getRequestURI() + "?token=" + jwt + "&username=" + username;
+            String modifiedUrl = request.getRequestURI() + "?token=" + jwt;
             RequestDispatcher dispatcher = request.getRequestDispatcher(modifiedUrl);
             dispatcher.forward(request, response);
             return;
         }
-
         chain.doFilter(request, response);
     }
-
 }

@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -50,13 +51,13 @@ public class ClienteRestControllers {
     public java.util.List<ClienteDTO> getAll() {
         List<ClienteDTO> clienti = new ArrayList<>();
 
-        List<Cliente> altriUtenti = getApiResponse();
+/*        List<Cliente> altriUtenti = getApiResponse();
         List<Cliente> questiClienti = clienteRepository.findAll();
         List<Cliente> tuttiUtenti = new ArrayList<>(altriUtenti);
-        tuttiUtenti.addAll(questiClienti);
+        tuttiUtenti.addAll(questiClienti);*/
 
-        for(Cliente cliente : tuttiUtenti) {
-        //for(Cliente cliente : clienteRepository.findAll()) {
+        //for(Cliente cliente : tuttiUtenti) {
+        for(Cliente cliente : clienteRepository.findAll()) {
                 ClienteDTO clienteDTO = new ClienteDTO();
                 clienteDTO.setId(cliente.getId());
                 clienteDTO.setNome(cliente.getNome());
@@ -73,8 +74,44 @@ public class ClienteRestControllers {
         return clienti;
     }
 
+    //post registrazione
     @RequestMapping(value = "/registrazione", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ClienteDTO post(@RequestBody ClienteDTO clienteDTO){
+        Cliente newCliente = new Cliente();
+        newCliente.setId(clienteDTO.getId());
+        newCliente.setNome(clienteDTO.getNome());
+        newCliente.setCognome(clienteDTO.getCognome());
+        newCliente.setEmail(clienteDTO.getEmail());
+        newCliente.setEta(clienteDTO.getEta());
+        newCliente.setUsername(clienteDTO.getUsername());
+        newCliente.setPassword(passwordEncoder().encode(clienteDTO.getPassword()));
+        //newCliente.setPassword(clienteDTO.getPassword());
+        newCliente.setRuolo(clienteDTO.getRuolo());
+        newCliente.setIndirizzo(clienteDTO.getIndirizzo());
+        newCliente.setCard(clienteDTO.getCard());
+
+        boolean isIn = false;
+        List<ClienteDTO> clienti = new ArrayList<>();
+        clienti = getAll();
+        for(ClienteDTO cliente: clienti) {
+            if(newCliente.getUsername().equals(cliente.getUsername())) {
+                isIn = true;
+            }
+        }
+
+        if(isIn == false) {
+            //salviamo il nuovo utente con l'id aggiornato nel database
+            newCliente = clienteRepository.save(newCliente);
+            //salviamo il nuovo cliente anche nel microservizio admin
+            System.out.print(postApi(clienteDTO));
+            System.out.println("L'Id del nuovo utente è: " + newCliente.getId());
+        }
+        return clienteDTO;
+    }
+
+    //post usata per aggiornare
+    @RequestMapping(value = "/aggiungi", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ClienteDTO postAggiungi(@RequestBody ClienteDTO clienteDTO){
         Cliente newCliente = new Cliente();
         newCliente.setId(clienteDTO.getId());
         newCliente.setNome(clienteDTO.getNome());
@@ -130,33 +167,63 @@ public class ClienteRestControllers {
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 
-    public List<Cliente> getApiResponse() {
-        String url = "http://admin:8080/admin/utenti/lista";
+    public String postApi(ClienteDTO clienteDTO) {
+/*        String url = "http://admin:8080/admin/utenti/aggiungi";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Header-Name", "Header-Value");
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
         String responseBody = response.getBody();
 
         JSONArray jsonArray = new JSONArray(responseBody);
         List<Cliente> clienti = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            Cliente cliente = new Cliente();
-            cliente.setId(jsonObject.getString("id"));
-            cliente.setNome(jsonObject.getString("nome"));
-            cliente.setCognome(jsonObject.getString("cognome"));
-            cliente.setEmail(jsonObject.getString("email"));
-            cliente.setEta(jsonObject.getInt("eta"));
-            cliente.setUsername(jsonObject.getString("username"));
-            cliente.setRuolo(jsonObject.getString("ruolo"));
-            cliente.setIndirizzo("null");
-            cliente.setCard("null");
-            clienti.add(cliente);
-        }
+            Cliente clienteDTO = new Cliente();
+            clienteDTO.setId(jsonObject.getString("id"));
+            clienteDTO.setNome(jsonObject.getString("nome"));
+            clienteDTO.setCognome(jsonObject.getString("cognome"));
+            clienteDTO.setEmail(jsonObject.getString("email"));
+            clienteDTO.setEta(jsonObject.getInt("eta"));
+            clienteDTO.setUsername(jsonObject.getString("username"));
+            clienteDTO.setRuolo(jsonObject.getString("ruolo"));
+            clienteDTO.setIndirizzo("null");
+            clienteDTO.setCard("null");
+            clienti.add(clienteDTO);
 
-        return clienti;
+        }
+        return clienti;*/
+        String url = "http://admin:8080/admin/utenti/aggiungi";
+
+        // Creazione dell'header della richiesta
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+
+        String jsonReq =
+                "{ \"id\":" + "\"" + clienteDTO.getId() + "\"," +
+                    "\"nome\":" + "\"" + clienteDTO.getNome() + "\"," +
+                    "\"cognome\":" + "\"" + clienteDTO.getCognome() + "\"," +
+                    "\"email\":" + "\"" + clienteDTO.getEmail() + "\"," +
+                    "\"eta\":" + "\"" + clienteDTO.getEta() + "\"," +
+                    "\"username\":" + "\"" + clienteDTO.getUsername() + "\"," +
+                    "\"password\":" + "\"" + clienteDTO.getPassword() + "\"," +
+                    "\"ruolo\":" + "\"" + clienteDTO.getRuolo() + "\"," +
+                    "\"indirizzo\":" + "\"" + clienteDTO.getIndirizzo() + "\"," +
+                    "\"card\":" + "\"" + clienteDTO.getCard() + "\"" +
+                        "}";
+
+        // Creazione dell'oggetto HttpEntity con header e parametri
+        HttpEntity<String> request = new HttpEntity<>(jsonReq, headers);
+
+        // Invio della richiesta POST all'URL specificato
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            String responseBody = response.getBody();
+            return "Risposta: " + responseBody;
+        }
+        return "Errore nella richiesta";
     }
 }

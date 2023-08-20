@@ -1,6 +1,7 @@
 package it.unisalento.pas.login.configuration;
 
 import it.unisalento.pas.login.security.JwtAuthenticationFilter;
+import it.unisalento.pas.login.security.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,16 +48,24 @@ public class SecurityConf {
         return new JwtAuthenticationFilter();
     }
 
+/*    @Bean
+    public JwtFilter jwtFilter(){
+        return new JwtFilter();
+    }*/
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests().requestMatchers("/utenti/autenticazione").permitAll().and()
+        http.csrf().disable().authorizeRequests().requestMatchers("/utenti/aggiungi").hasRole("amministratore").and()
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        http.authorizeRequests().requestMatchers("/utenti/lista").hasRole("amministratore").and().
+                addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        http.authorizeRequests().requestMatchers("/utenti/autenticazione").permitAll().and()
                 .authorizeRequests().requestMatchers("/utenti/registrazione").permitAll().and()
-                .authorizeRequests().requestMatchers("/utenti/lista").hasRole("cittadino")
-                .anyRequest().authenticated()
-                .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS); //ogni richiesta è indipendente dall'altra
-        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .authorizeRequests().requestMatchers("/utenti/**").authenticated().and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
         return http.build();
     }
 }
