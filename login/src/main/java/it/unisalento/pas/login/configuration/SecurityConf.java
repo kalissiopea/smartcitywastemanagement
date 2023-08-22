@@ -48,15 +48,16 @@ public class SecurityConf {
         return new JwtAuthenticationFilter();
     }
 
-/*    @Bean
+    @Bean
     public JwtFilter jwtFilter(){
         return new JwtFilter();
-    }*/
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().requestMatchers("/utenti/aggiungi").hasRole("amministratore").and()
-                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+/*        http.csrf().disable().authorizeRequests().requestMatchers("/utenti/aggiungi").hasRole("amministratore").and()
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);*/
+        http.csrf().disable().authorizeRequests().requestMatchers("/utenti/aggiungi").permitAll();
 
         http.authorizeRequests().requestMatchers("/utenti/lista").hasRole("amministratore").and().
                 addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
