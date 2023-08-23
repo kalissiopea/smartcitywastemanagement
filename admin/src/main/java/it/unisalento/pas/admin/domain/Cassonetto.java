@@ -9,6 +9,9 @@ public class Cassonetto {
     @Id
     String id;
     String luogo;
+
+    String tipo;
+
     float stato;
 
     public String getId() {
@@ -25,6 +28,14 @@ public class Cassonetto {
 
     public void setLuogo(String luogo) {
         this.luogo = luogo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public float getStato() {

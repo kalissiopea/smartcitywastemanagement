@@ -43,6 +43,8 @@ public class SecurityConf {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests().requestMatchers("/admin/utenti/aggiungi").permitAll().and()
+                .authorizeRequests().requestMatchers("/admin/utenti/ruoli").permitAll().and()
+                .authorizeRequests().requestMatchers("/admin/cassonetti/lista").permitAll().and()
                 .authorizeRequests().requestMatchers("/admin/**").hasRole("amministratore")
                 .anyRequest().authenticated()
                 .and().sessionManagement()

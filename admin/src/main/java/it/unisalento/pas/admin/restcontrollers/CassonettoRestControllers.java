@@ -27,6 +27,7 @@ public class CassonettoRestControllers {
             CassonettoDTO cassonettoDTO = new CassonettoDTO();
             cassonettoDTO.setId(cassonetto.getId());
             cassonettoDTO.setLuogo(cassonetto.getLuogo());
+            cassonettoDTO.setTipo(cassonetto.getTipo());
             cassonettoDTO.setStato(cassonetto.getStato());
             cassonetti.add(cassonettoDTO);
         }
@@ -44,6 +45,7 @@ public class CassonettoRestControllers {
             CassonettoDTO cassonettoDTO = new CassonettoDTO();
             cassonettoDTO.setId(cassonetto.getId());
             cassonettoDTO.setLuogo(cassonetto.getLuogo());
+            cassonettoDTO.setTipo(cassonetto.getTipo());
             cassonettoDTO.setStato(cassonetto.getStato());
             cassonetti.add(cassonettoDTO);
         }
@@ -57,6 +59,7 @@ public class CassonettoRestControllers {
         Cassonetto newCassonetto = new Cassonetto();
         newCassonetto.setId(cassonettoDTO.getId());
         newCassonetto.setLuogo(cassonettoDTO.getLuogo());
+        newCassonetto.setTipo(cassonettoDTO.getTipo());
         newCassonetto.setStato(cassonettoDTO.getStato());
         newCassonetto = cassonettoRepository.save(newCassonetto);
         System.out.println("L'Id del nuovo cassonetto è: " + newCassonetto.getId());

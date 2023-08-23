@@ -4,6 +4,7 @@ package it.unisalento.pas.admin.dto;
 public class CassonettoDTO {
     String id;
     private String luogo;
+    private String tipo;
     private float stato;
 
     public String getId() {
@@ -20,6 +21,14 @@ public class CassonettoDTO {
 
     public void setLuogo(String luogo) {
         this.luogo = luogo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public float getStato() {
