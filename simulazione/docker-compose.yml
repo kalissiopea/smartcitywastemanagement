@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  simulazione:
+    image: openjdk:19
+    container_name: simimage
+    ports:
+      - 8087:8080
+    expose:
+      - "8087"
+    depends_on:
+      - sim-db
+    networks:
+      - sim-net
+      - smartcitywastemanagement_main-net
+    volumes:
+      - ./build/libs/simulazione-0.0.1-SNAPSHOT.jar:/app/app.jar
+    working_dir: /app
+    entrypoint: java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar /app/app.jar
+  sim-db:
+    image: mongo:5.0
+    container_name: mongodbimage8
+    ports:
+      - 27012:27017
+    networks:
+      - sim-net
+networks:
+  sim-net:
+    driver:
+      "bridge"
+  smartcitywastemanagement_main-net:
+    driver:
+      "bridge"
+    external: true
+
