@@ -6,11 +6,12 @@ services:
     image: openjdk:19
     container_name: simimage
     ports:
-      - 8087:8080
+      - 8000:8000
     expose:
-      - "8087"
+      - "8000"
     depends_on:
       - sim-db
+      - rabbitmq
     networks:
       - sim-net
       - smartcitywastemanagement_main-net
@@ -23,6 +24,17 @@ services:
     container_name: mongodbimage8
     ports:
       - 27012:27017
+    networks:
+      - sim-net
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq/data:/var/lib/rabbitmq
+      - ./rabbitmq/logs:/var/log/rabbitmq
     networks:
       - sim-net
 networks:

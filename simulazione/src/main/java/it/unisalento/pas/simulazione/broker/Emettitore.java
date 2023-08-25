@@ -8,6 +8,7 @@ import it.unisalento.pas.simulazione.dto.CassonettoDTO;
 import it.unisalento.pas.simulazione.dto.RifiutoDTO;
 import it.unisalento.pas.simulazione.dto.UtenteDTO;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeoutException;
 
+@Component
 public class Emettitore {
 
     private List<CassonettoDTO> cassonettiDTO;
@@ -29,7 +31,7 @@ public class Emettitore {
     @Scheduled(fixedDelay = 300000)
     public void emettere() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("rabbitmq");
 
         try(Connection connection = factory.newConnection()){
             Channel channel = connection.createChannel();

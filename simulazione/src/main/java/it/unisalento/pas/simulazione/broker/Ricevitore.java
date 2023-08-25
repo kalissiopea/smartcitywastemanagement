@@ -4,14 +4,19 @@ import com.rabbitmq.client.*;
 import it.unisalento.pas.simulazione.dto.CassonettoDTO;
 import it.unisalento.pas.simulazione.dto.RifiutoDTO;
 import it.unisalento.pas.simulazione.dto.UtenteDTO;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeoutException;
 
+@Component
 public class Ricevitore {
 
     private List<CassonettoDTO> cassonettiDTO;
@@ -19,15 +24,24 @@ public class Ricevitore {
     private final static String EXCHANGE_NAME = "Raccolta";
     private final String[] topic = new String[1];
 
+    private RifiutoDTO rifiutoDTO = new RifiutoDTO();
+
     public Ricevitore(List<CassonettoDTO> cassonettiDTO, List<UtenteDTO> utentiDTO) {
         this.cassonettiDTO = cassonettiDTO;
         this.utentiDTO = utentiDTO;
+/*        rifiutoDTO.setTipo("non reperibile");
+        rifiutoDTO.setLuogo("non reperibile");
+        rifiutoDTO.setUsername("non reperibile");
+        rifiutoDTO.setId("non reperibile");*/
     }
 
-    public RifiutoDTO ricevere() throws IOException, TimeoutException {
+    @Retryable(maxAttempts = 5, backoff = @Backoff(delay = 1000))
+    public CompletableFuture<RifiutoDTO> ricevere() throws IOException, TimeoutException {
+        CompletableFuture<RifiutoDTO> completableFuture = new CompletableFuture<>();
+
 
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("rabbitmq");
 
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
@@ -45,12 +59,13 @@ public class Ricevitore {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             topic[0] = delivery.getEnvelope().getRoutingKey();
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
-            System.out.println(message);
+            System.out.println(message + " " + topic[0]);
+            rifiutoDTO = generareRifiuto(topic[0]);
+            completableFuture.complete(rifiutoDTO);
         };
 
         channel.basicConsume(queueName, true, deliverCallback, consumerTag ->{});
-        RifiutoDTO rifiutoDTO = generareRifiuto(topic[0]);
-        return rifiutoDTO;
+        return completableFuture;
     }
 
     public List<String> generateRoutingKey() {

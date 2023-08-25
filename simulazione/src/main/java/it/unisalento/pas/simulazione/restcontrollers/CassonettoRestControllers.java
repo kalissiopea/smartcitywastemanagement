@@ -1,11 +1,8 @@
 package it.unisalento.pas.simulazione.restcontrollers;
 
 import it.unisalento.pas.simulazione.domain.Cassonetto;
-import it.unisalento.pas.simulazione.domain.Utente;
 import it.unisalento.pas.simulazione.dto.CassonettoDTO;
-import it.unisalento.pas.simulazione.dto.UtenteDTO;
 import it.unisalento.pas.simulazione.repository.CassonettoRepository;
-import it.unisalento.pas.simulazione.repository.UtenteRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
