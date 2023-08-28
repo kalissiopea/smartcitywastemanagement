@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  checking:
+    image: openjdk:19
+    container_name: checkimage
+    ports:
+      - 8083:8080
+    expose:
+      - "8083"
+    depends_on:
+      - check-db
+    networks:
+      - check-net
+      - smartcitywastemanagement_main-net
+    volumes:
+      - ./build/libs/checking-0.0.1-SNAPSHOT.jar:/app/app.jar
+    working_dir: /app
+    entrypoint: java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar /app/app.jar
+  check-db:
+    image: mongo:5.0
+    container_name: mongodbimage3
+    ports:
+      - 27016:27017
+    networks:
+      - check-net
+networks:
+  check-net:
+    driver:
+      "bridge"
+  smartcitywastemanagement_main-net:
+    driver:
+      "bridge"
+    external: true
