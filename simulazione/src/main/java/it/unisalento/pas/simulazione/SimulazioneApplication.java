@@ -92,6 +92,7 @@ public class SimulazioneApplication {
 /*            Gson gson = new GsonBuilder().create();
             String json = gson.toJson(rifiutoDTO);*/
             String postRif = "http://localhost:8080/sim/rifiuti/inserisci";
+            String postCheck = "http://checking:8080/check/rifiuti/inserisci";
             HttpHeaders headers1 = new HttpHeaders();
             headers1.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
 
@@ -102,7 +103,8 @@ public class SimulazioneApplication {
                             "}";
 
             HttpEntity<String> request = new HttpEntity<>(jsonReq, headers1);
-            ResponseEntity<String> risposta = restTemplate.exchange(postRif, HttpMethod.POST, request, String.class);
+            ResponseEntity<String> risposta1 = restTemplate.exchange(postRif, HttpMethod.POST, request, String.class);
+            ResponseEntity<String> risposta2 = restTemplate.exchange(postCheck, HttpMethod.POST, request, String.class);
 
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
