@@ -103,7 +103,10 @@ public class ClienteRestControllers {
             //salviamo il nuovo utente con l'id aggiornato nel database
             newCliente = clienteRepository.save(newCliente);
             //salviamo il nuovo cliente anche nel microservizio admin
-            System.out.print(postApi(clienteDTO));
+            String url = "http://admin:8080/admin/utenti/aggiungi";
+            String urls = "http://checking:8080/check/utenti/aggiungi";
+            System.out.print(postApi(clienteDTO, url));
+            System.out.print(postApi(clienteDTO, urls));
             System.out.println("L'Id del nuovo utente è: " + newCliente.getId());
         }
         return clienteDTO;
@@ -167,40 +170,10 @@ public class ClienteRestControllers {
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 
-    public String postApi(ClienteDTO clienteDTO) {
-/*        String url = "http://admin:8080/admin/utenti/aggiungi";
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Header-Name", "Header-Value");
-
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-        String responseBody = response.getBody();
-
-        JSONArray jsonArray = new JSONArray(responseBody);
-        List<Cliente> clienti = new ArrayList<>();
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-            Cliente clienteDTO = new Cliente();
-            clienteDTO.setId(jsonObject.getString("id"));
-            clienteDTO.setNome(jsonObject.getString("nome"));
-            clienteDTO.setCognome(jsonObject.getString("cognome"));
-            clienteDTO.setEmail(jsonObject.getString("email"));
-            clienteDTO.setEta(jsonObject.getInt("eta"));
-            clienteDTO.setUsername(jsonObject.getString("username"));
-            clienteDTO.setRuolo(jsonObject.getString("ruolo"));
-            clienteDTO.setIndirizzo("null");
-            clienteDTO.setCard("null");
-            clienti.add(clienteDTO);
-
-        }
-        return clienti;*/
-        String url = "http://admin:8080/admin/utenti/aggiungi";
-
+    public String postApi(ClienteDTO clienteDTO, String url) {
         // Creazione dell'header della richiesta
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
-
         String jsonReq =
                 "{ \"id\":" + "\"" + clienteDTO.getId() + "\"," +
                     "\"nome\":" + "\"" + clienteDTO.getNome() + "\"," +
