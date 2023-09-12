@@ -5,6 +5,7 @@ public class RifiutoDTO {
     private String username;
     private String tipo;
     private String luogo;
+    private float peso;
 
     public String getId() {
         return id;
@@ -36,5 +37,12 @@ public class RifiutoDTO {
 
     public void setLuogo(String luogo) {
         this.luogo = luogo;
+    }
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
     }
 }

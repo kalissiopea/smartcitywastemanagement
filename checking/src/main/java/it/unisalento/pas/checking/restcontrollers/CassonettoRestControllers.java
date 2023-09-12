@@ -5,10 +5,7 @@ import it.unisalento.pas.checking.dto.CassonettoDTO;
 import it.unisalento.pas.checking.repository.CassonettoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +42,18 @@ public class CassonettoRestControllers {
             cassonetti.add(cassonettoDTO);
         }
         return cassonetti;
+    }
+
+    @RequestMapping(value = "/aggiornaStato/{luogo}/{stato}", method = RequestMethod.PUT)
+    public void aggiornaStato(@PathVariable String luogo, @PathVariable float stato){
+        Cassonetto cassonetto = cassonettoRepository.findByLuogo(luogo);
+        if(cassonetto != null) {
+            float statoAtt = cassonetto.getStato();
+            cassonetto.setStato(statoAtt + stato);
+            cassonettoRepository.save(cassonetto);
+            System.out.println("Stato del cassonetto aggiornato con successo.");
+        } else {
+            System.out.println("Cassonetto non trovato.");
+        }
     }
 }

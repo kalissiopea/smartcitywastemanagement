@@ -10,6 +10,7 @@ public class Rifiuto {
     String username;
     String tipo;
     String luogo;
+    float peso;
 
     public String getId() {
         return id;
@@ -41,5 +42,13 @@ public class Rifiuto {
 
     public void setLuogo(String luogo) {
         this.luogo = luogo;
+    }
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
     }
 }
