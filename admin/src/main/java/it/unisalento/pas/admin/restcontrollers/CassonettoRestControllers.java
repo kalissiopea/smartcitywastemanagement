@@ -79,6 +79,19 @@ public class CassonettoRestControllers {
         return result;
     }
 
+    @RequestMapping(value = "/aggiornaStato/{luogo}/{stato}", method = RequestMethod.PUT)
+    public void aggiornaStato(@PathVariable String luogo, @PathVariable float stato){
+        Cassonetto cassonetto = cassonettoRepository.findByLuogo(luogo);
+        if(cassonetto != null) {
+            float statoAtt = cassonetto.getStato();
+            cassonetto.setStato(statoAtt + stato);
+            cassonettoRepository.save(cassonetto);
+            System.out.println("Stato del cassonetto aggiornato con successo.");
+        } else {
+            System.out.println("Cassonetto non trovato.");
+        }
+    }
+
     public String postApi(CassonettoDTO cassonettoDTO) {
         String url = "http://checking:8080/check/cassonetti/aggiungi";
 
