@@ -6,13 +6,8 @@ import it.unisalento.pas.simulazione.repository.CassonettoRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -85,5 +80,18 @@ public class CassonettoRestControllers {
             cassonetti.add(cassonettoDTO);
         }
         return cassonetti;
+    }
+
+    @RequestMapping(value = "/aggiornaStato/{luogo}/{stato}", method = RequestMethod.PUT)
+    public void aggiornaStato(@PathVariable String luogo, @PathVariable float stato){
+        Cassonetto cassonetto = cassonettoRepository.findByLuogo(luogo);
+        if(cassonetto != null) {
+            float statoAtt = cassonetto.getStato();
+            cassonetto.setStato(statoAtt + stato);
+            cassonettoRepository.save(cassonetto);
+            System.out.println("Stato del cassonetto aggiornato con successo.");
+        } else {
+            System.out.println("Cassonetto non trovato.");
+        }
     }
 }

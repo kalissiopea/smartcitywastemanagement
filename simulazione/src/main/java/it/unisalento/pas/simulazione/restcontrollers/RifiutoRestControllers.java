@@ -31,6 +31,7 @@ public class RifiutoRestControllers {
         newRifiuto.setLuogo(rifiutoDTO.getLuogo());
         newRifiuto.setTipo(rifiutoDTO.getTipo());
         newRifiuto.setUsername(rifiutoDTO.getUsername());
+        newRifiuto.setPeso(rifiutoDTO.getPeso());
         //salviamo il nuovo utente con l'id aggiornato nel database
         newRifiuto = rifiutoRepository.save(newRifiuto);
         return rifiutoDTO;

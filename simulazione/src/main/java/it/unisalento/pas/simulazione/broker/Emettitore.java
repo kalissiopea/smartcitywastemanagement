@@ -28,7 +28,6 @@ public class Emettitore {
         this.cassonettiDTO = cassonettiDTO;
     }
 
-    @Scheduled(fixedDelay = 300000)
     public void emettere() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("rabbitmq");

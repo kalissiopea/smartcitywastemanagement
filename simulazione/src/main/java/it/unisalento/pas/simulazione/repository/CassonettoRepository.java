@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CassonettoRepository extends MongoRepository<Cassonetto, String> {
 
-    public List<Cassonetto> findByLuogo(float luogo);
+    public Cassonetto findByLuogo(String luogo);
     public int deleteByLuogo(String luogo);
 }

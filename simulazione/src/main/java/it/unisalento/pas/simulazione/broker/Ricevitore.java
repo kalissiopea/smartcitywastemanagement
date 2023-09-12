@@ -95,10 +95,14 @@ public class Ricevitore {
         Random random2 = new Random();
         int indiceRandom = random2.nextInt(tipi.size());
 
+        Random random3 = new Random();
+        int pesoRandom = random3.nextInt(100) + 1;
+
         RifiutoDTO rifiutoDTO = new RifiutoDTO();
         rifiutoDTO.setUsername(usernames.get(randomIndex));
         rifiutoDTO.setLuogo(topic);
         rifiutoDTO.setTipo(tipi.get(indiceRandom));
+        rifiutoDTO.setPeso(pesoRandom);
         return rifiutoDTO;
     }
 }
