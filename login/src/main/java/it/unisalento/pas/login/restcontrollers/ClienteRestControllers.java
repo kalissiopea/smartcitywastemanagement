@@ -104,9 +104,14 @@ public class ClienteRestControllers {
             newCliente = clienteRepository.save(newCliente);
             //salviamo il nuovo cliente anche nel microservizio admin
             String url = "http://admin:8080/admin/utenti/aggiungi";
-            String urls = "http://checking:8080/check/utenti/aggiungi";
             System.out.print(postApi(clienteDTO, url));
-            System.out.print(postApi(clienteDTO, urls));
+            if(clienteDTO.getRuolo().equals("cittadino")) {
+                String urls = "http://checking:8080/check/utenti/aggiungi";
+                System.out.print(postApi(clienteDTO, urls));
+            } else if (clienteDTO.getRuolo().equals("impiegato")) {
+                String url1 = "http://giudizio:8080/giudizio/utenti/aggiungi";
+                System.out.println(postApi(clienteDTO, url1));
+            }
             System.out.println("L'Id del nuovo utente è: " + newCliente.getId());
         }
         return clienteDTO;
