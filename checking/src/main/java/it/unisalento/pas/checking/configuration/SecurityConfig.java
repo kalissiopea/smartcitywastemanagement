@@ -44,10 +44,17 @@ public class SecurityConfig {
         httpSecurity.csrf().disable().authorizeRequests().requestMatchers("/check/performance/**").permitAll().
                 and().authorizeRequests().requestMatchers("/check/cassonetti/**").permitAll().
                 and().authorizeRequests().requestMatchers("/check/rifiuti/**").permitAll().
+                and().authorizeRequests().requestMatchers("/check/giudizio/**").permitAll().
                 and().authorizeRequests().requestMatchers("/check/utenti/**").permitAll();
 
         httpSecurity.authorizeRequests().requestMatchers("/check/performance/mie").hasRole("cittadino").and().
                 addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        httpSecurity.authorizeRequests().requestMatchers("/check/giudizio/mie").hasRole("cittadino").and().
+                addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        httpSecurity.authorizeRequests().requestMatchers("/check/giudizio/mie").authenticated().and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         httpSecurity.authorizeRequests().requestMatchers("/check/performance/mie").authenticated().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
