@@ -40,7 +40,7 @@ public class CheckingRestControllers {
         newChecking.setPunteggio(checkingDTO.getPunteggio());
         newChecking.setRifiuti(checkingDTO.getRifiuti());
         newChecking = checkingRepository.save(newChecking);
-        System.out.println("L'Id del nuovo cassonetto è: " + newChecking.getId());
+        System.out.println("L'Id nuovo è: " + newChecking.getId());
     }
 
     @RequestMapping(value = "/aggiornaCheck/{username}/{punteggio}/{rifiuti}", method = RequestMethod.PUT)
