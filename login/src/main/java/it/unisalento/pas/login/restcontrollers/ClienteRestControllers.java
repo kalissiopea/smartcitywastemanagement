@@ -111,6 +111,9 @@ public class ClienteRestControllers {
             } else if (clienteDTO.getRuolo().equals("impiegato")) {
                 String url1 = "http://giudizio:8080/giudizio/utenti/aggiungi";
                 System.out.println(postApi(clienteDTO, url1));
+            } else if (clienteDTO.getRuolo().equals("manager azienda rifiuti")) {
+                String url2 = "http://monitoraggio:8080/monitorare/utenti/aggiungi";
+                System.out.println(postApi(clienteDTO, url2));
             }
             System.out.println("L'Id del nuovo utente è: " + newCliente.getId());
         }
