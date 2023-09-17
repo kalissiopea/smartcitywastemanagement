@@ -1,7 +1,5 @@
 package it.unisalento.pas.simulazione;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import it.unisalento.pas.simulazione.broker.Emettitore;
 import it.unisalento.pas.simulazione.broker.Ricevitore;
 import it.unisalento.pas.simulazione.dto.CassonettoDTO;
@@ -13,7 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.*;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -101,6 +98,7 @@ public class SimulazioneApplication {
                     String updateCass = "http://localhost:8080/sim/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
                     String updateCheck = "http://checking:8080/check/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
                     String updateAdmin = "http://admin:8080/admin/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+                    String updateMon = "http://monitoraggio:8080/monitoraggio/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
 
                     HttpHeaders headers1 = new HttpHeaders();
                     headers1.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
@@ -118,6 +116,7 @@ public class SimulazioneApplication {
                     ResponseEntity<String> risposta3 = restTemplate.exchange(updateCass, HttpMethod.PUT, null, String.class);
                     ResponseEntity<String> risposta4 = restTemplate.exchange(updateCheck, HttpMethod.PUT, null, String.class);
                     ResponseEntity<String> risposta5 = restTemplate.exchange(updateAdmin, HttpMethod.PUT, null, String.class);
+                    ResponseEntity<String> risposta6 = restTemplate.exchange(updateMon, HttpMethod.PUT, null, String.class);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 } catch (TimeoutException e) {
