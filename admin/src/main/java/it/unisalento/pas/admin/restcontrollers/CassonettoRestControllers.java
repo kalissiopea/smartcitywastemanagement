@@ -94,6 +94,7 @@ public class CassonettoRestControllers {
 
     public String postApi(CassonettoDTO cassonettoDTO) {
         String url = "http://checking:8080/check/cassonetti/aggiungi";
+        String url1 = "http://monitoraggio:8080/monitorare/cassonetti/aggiungi";
 
         // Creazione dell'header della richiesta
         HttpHeaders headers = new HttpHeaders();
@@ -111,8 +112,14 @@ public class CassonettoRestControllers {
 
         // Invio della richiesta POST all'URL specificato
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+        ResponseEntity<String> risposta = restTemplate.exchange(url1, HttpMethod.POST, request, String.class);
 
         if (response.getStatusCode().is2xxSuccessful()) {
+            String responseBody = response.getBody();
+            return "Risposta: " + responseBody;
+        }
+
+        if (risposta.getStatusCode().is2xxSuccessful()) {
             String responseBody = response.getBody();
             return "Risposta: " + responseBody;
         }
