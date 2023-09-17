@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  monitoraggio:
+    image: openjdk:19
+    container_name: monimage
+    ports:
+      - 8084:8080
+    expose:
+      - "8084"
+    depends_on:
+      - moni-db
+    networks:
+      - moni-net
+      - smartcitywastemanagement_main-net
+    volumes:
+      - ./build/libs/monitoraggio-0.0.1-SNAPSHOT.jar:/app/app.jar
+    working_dir: /app
+    entrypoint: java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar /app/app.jar
+  moni-db:
+    image: mongo:5.0
+    container_name: mongodbimage4
+    ports:
+      - 27015:27017
+    networks:
+      - moni-net
+networks:
+  moni-net:
+    driver:
+      "bridge"
+  smartcitywastemanagement_main-net:
+    driver:
+      "bridge"
+    external: true
