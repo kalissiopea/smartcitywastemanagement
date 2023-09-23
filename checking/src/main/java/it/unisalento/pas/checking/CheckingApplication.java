@@ -33,6 +33,7 @@ public class CheckingApplication {
                 checks = checkRestControllers.generareChecking(restTemplate);
                 String postCheck = "http://localhost:8080/check/performance/aggiungi";
                 String postGiud = "http://giudizio:8080/giudizio/check/aggiungi";
+                String postEm = "http://emissione:8080/cittadino/check/aggiungi";
 
                 HttpHeaders headers1 = new HttpHeaders();
                 headers1.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
@@ -46,6 +47,7 @@ public class CheckingApplication {
                     HttpEntity<String> request = new HttpEntity<>(jsonReq, headers1);
                     ResponseEntity<String> risposta = restTemplate.exchange(postCheck, HttpMethod.POST, request, String.class);
                     ResponseEntity<String> response = restTemplate.exchange(postGiud, HttpMethod.POST, request, String.class);
+                    ResponseEntity<String> risposte = restTemplate.exchange(postEm, HttpMethod.POST, request, String.class);
                 }
             } else {
                 newDati = checkRestControllers.generareChecking(restTemplate);
@@ -53,8 +55,10 @@ public class CheckingApplication {
                     if(utenteDTO.getUsername().equals(check.getUsername())) {
                         String aggiorna = "http://localhost:8080/check/performance/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
                         String aggiornaGiud = "http://giudizio:8080/giudizio/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
+                        String aggiornaEm = "http://emissione:8080/cittadino/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
                         ResponseEntity<String> risposta = restTemplate.exchange(aggiorna, HttpMethod.PUT, null, String.class);
                         ResponseEntity<String> response = restTemplate.exchange(aggiornaGiud, HttpMethod.PUT, null, String.class);
+                        ResponseEntity<String> risposte = restTemplate.exchange(aggiornaEm, HttpMethod.PUT, null, String.class);
                     }
                 }
             }
