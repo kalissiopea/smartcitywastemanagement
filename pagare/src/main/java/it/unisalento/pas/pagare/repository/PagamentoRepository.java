@@ -1,0 +1,15 @@
+package it.unisalento.pas.pagare.repository;
+
+import it.unisalento.pas.pagare.domain.Pagamento;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import java.util.List;
+
+public interface PagamentoRepository extends MongoRepository<Pagamento,String> {
+
+    public List<Pagamento> findByStato(Boolean stato);
+
+    public List<Pagamento> findByUsername(String username);
+
+}
+
