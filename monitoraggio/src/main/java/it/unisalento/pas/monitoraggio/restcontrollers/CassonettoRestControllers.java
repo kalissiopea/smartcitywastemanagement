@@ -81,7 +81,11 @@ public class CassonettoRestControllers {
         Cassonetto cassonetto = cassonettoRepository.findByLuogo(luogo);
         if(cassonetto != null) {
             float statoAtt = cassonetto.getStato();
-            cassonetto.setStato(statoAtt + stato);
+            if(stato != 0.0) {
+                cassonetto.setStato(statoAtt + stato);
+            } else {
+                cassonetto.setStato(stato);
+            }
             cassonettoRepository.save(cassonetto);
             System.out.println("Stato del cassonetto aggiornato con successo.");
         } else {
