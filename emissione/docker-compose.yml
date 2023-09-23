@@ -1,0 +1,33 @@
+services:
+
+  emissione:
+    image: openjdk:19
+    container_name: emissioneimage
+    ports:
+      - 8086:8080
+    expose:
+      - "8086"
+    depends_on:
+      - emissione-db
+    networks:
+      - emissione-net
+      - smartcitywastemanagement_main-net
+    volumes:
+      - ./build/libs/emissione-0.0.1-SNAPSHOT.jar:/app/app.jar
+    working_dir: /app
+    entrypoint: java -Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar /app/app.jar
+  emissione-db:
+    image: mongo:5.0
+    container_name: mongodbimage6
+    ports:
+      - 27013:27017
+    networks:
+      - emissione-net
+networks:
+  emissione-net:
+    driver:
+      "bridge"
+  smartcitywastemanagement_main-net:
+    driver:
+      "bridge"
+    external: true
