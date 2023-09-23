@@ -106,14 +106,18 @@ public class ClienteRestControllers {
             String url = "http://admin:8080/admin/utenti/aggiungi";
             System.out.print(postApi(clienteDTO, url));
             if(clienteDTO.getRuolo().equals("cittadino")) {
-                String urls = "http://checking:8080/check/utenti/aggiungi";
-                System.out.print(postApi(clienteDTO, urls));
+                String url1 = "http://checking:8080/check/utenti/aggiungi";
+                String url2 = "http://pagare:8080/cittadino/utenti/aggiungi";
+                System.out.print(postApi(clienteDTO, url1));
+                System.out.print(postApi(clienteDTO, url2));
             } else if (clienteDTO.getRuolo().equals("impiegato")) {
-                String url1 = "http://giudizio:8080/giudizio/utenti/aggiungi";
-                System.out.println(postApi(clienteDTO, url1));
+                String url3 = "http://giudizio:8080/giudizio/utenti/aggiungi";
+                String url4 = "http://emissione:8080/cittadino/utenti/aggiungi";
+                System.out.println(postApi(clienteDTO, url3));
+                System.out.println(postApi(clienteDTO, url4));
             } else if (clienteDTO.getRuolo().equals("manager azienda rifiuti")) {
-                String url2 = "http://monitoraggio:8080/monitorare/utenti/aggiungi";
-                System.out.println(postApi(clienteDTO, url2));
+                String url5 = "http://monitoraggio:8080/monitorare/utenti/aggiungi";
+                System.out.println(postApi(clienteDTO, url5));
             }
             System.out.println("L'Id del nuovo utente è: " + newCliente.getId());
         }
