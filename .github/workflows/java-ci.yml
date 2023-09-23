@@ -2,11 +2,11 @@ name: Java CI with Gradle
 on:
   push:
     branches:
-      - admin
+      - admin, login, checking, simulazione, giudizio, monitoraggio, emissione, pagare
 
   pull_request:
     branches:
-      - admin
+      - admin, login, checking, simulazione, giudizio, monitoraggio, emissione, pagare
 
 jobs:
   build:
