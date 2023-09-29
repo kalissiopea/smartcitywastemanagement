@@ -72,6 +72,18 @@ public class CassonettoRestControllers {
         return cassonettoDTO;
     }
 
+    @RequestMapping(value = "/aggiungiTest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public CassonettoDTO postTest(@RequestBody CassonettoDTO cassonettoDTO){
+        Cassonetto newCassonetto = new Cassonetto();
+        newCassonetto.setId(cassonettoDTO.getId());
+        newCassonetto.setLuogo(cassonettoDTO.getLuogo());
+        newCassonetto.setTipo(cassonettoDTO.getTipo());
+        newCassonetto.setStato(cassonettoDTO.getStato());
+        newCassonetto = cassonettoRepository.save(newCassonetto);
+        System.out.println("L'Id del nuovo cassonetto è: " + newCassonetto.getId());
+        return cassonettoDTO;
+    }
+
     //delete
     @RequestMapping(value = "/cancella", method = RequestMethod.DELETE)
     public int deleteByLuogo (@RequestParam String luogo) {
