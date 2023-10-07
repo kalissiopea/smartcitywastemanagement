@@ -51,8 +51,21 @@ public class GiudizioRestControllers {
         giudizioDTO.setDate(new Date().toString());
         giudizio.setDate(giudizioDTO.getDate());
         giudizio = giudizioRepository.save(giudizio);
-        String url = "http://checking:8080/check/giudizio/aggiungi";
+        String url = "http://34.193.105.215:8083/check/giudizio/aggiungi";
         System.out.println(postApi(giudizioDTO, url));
+        System.out.println("L'Id nuovo è: " + giudizio.getId());
+    }
+
+    @RequestMapping(value = "/aggiungiTest", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void postTest(@RequestBody GiudizioDTO giudizioDTO){
+        Giudizio giudizio = new Giudizio();
+        giudizio.setId(giudizioDTO.getId());
+        giudizio.setUsername(giudizioDTO.getUsername());
+        giudizio.setPunteggio(giudizioDTO.getPunteggio());
+        giudizio.setGiudizio(giudizioDTO.getGiudizio());
+        giudizioDTO.setDate(new Date().toString());
+        giudizio.setDate(giudizioDTO.getDate());
+        giudizio = giudizioRepository.save(giudizio);
         System.out.println("L'Id nuovo è: " + giudizio.getId());
     }
 
