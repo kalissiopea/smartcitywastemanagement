@@ -52,7 +52,7 @@ public class UtenteRestControllers {
 
     //api che prende tutti i cittadini dal db dell'admin
     public List<UtenteDTO> getUtentiResponse() {
-        String url = "http://admin:8080/admin/utenti/ruoli?ruolo=cittadino";
+        String url = "http://52.54.199.145:8080/admin/utenti/ruoli?ruolo=cittadino";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Header-Name", "Header-Value");
 

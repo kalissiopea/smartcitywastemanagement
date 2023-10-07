@@ -96,7 +96,7 @@ public class Ricevitore {
         int indiceRandom = random2.nextInt(tipi.size());
 
         Random random3 = new Random();
-        int pesoRandom = random3.nextInt(100) + 1;
+        int pesoRandom = random3.nextInt(10) + 1;
 
         RifiutoDTO rifiutoDTO = new RifiutoDTO();
         rifiutoDTO.setUsername(usernames.get(randomIndex));
