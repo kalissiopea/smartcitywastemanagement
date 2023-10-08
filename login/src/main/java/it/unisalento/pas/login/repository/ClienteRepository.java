@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ClienteRepository extends MongoRepository<Cliente, String> {
     public Cliente findByUsername(String username);
+    public int deleteByUsername(String username);
 }

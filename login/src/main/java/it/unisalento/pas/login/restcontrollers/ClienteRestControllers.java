@@ -13,10 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -213,5 +210,11 @@ public class ClienteRestControllers {
             return "Risposta: " + responseBody;
         }
         return "Errore nella richiesta";
+    }
+
+    @RequestMapping(value = "/cancella", method = RequestMethod.DELETE)
+    public int deleteByUsername (@RequestParam String username) {
+        int result = clienteRepository.deleteByUsername(username);
+        return result;
     }
 }
