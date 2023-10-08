@@ -55,4 +55,10 @@ public class CheckingRestControllers {
             System.out.println("Check non trovato.");
         }
     }
+
+    @RequestMapping(value = "/cancella", method = RequestMethod.DELETE)
+    public int deleteByUsername (@RequestParam String username) {
+        int result = checkingRepository.deleteByUsername(username);
+        return result;
+    }
 }
