@@ -26,6 +26,7 @@ public class CheckingApplication {
         List<CheckingDTO> checks = new ArrayList<>();
         List<CheckingDTO> newDati = new ArrayList<>();
 
+        int i = 0;
         for(UtenteDTO utenteDTO : utentiDTO) {
             checks = checkRestControllers.getCheckings(utenteDTO.getUsername(), restTemplate);
 
@@ -42,12 +43,14 @@ public class CheckingApplication {
                     String jsonReq =
                             "{ \"username\":" + "\"" + checkingDTO.getUsername() + "\"," +
                                     "\"punteggio\":" + "\"" + checkingDTO.getPunteggio() + "\"," +
+                                    "\"id\":" + "\"" + i + "\"," +
                                     "\"rifiuti\":" + "\"" + checkingDTO.getRifiuti() + "\"" +
                                     "}";
                     HttpEntity<String> request = new HttpEntity<>(jsonReq, headers1);
                     ResponseEntity<String> risposta = restTemplate.exchange(postCheck, HttpMethod.POST, request, String.class);
                     ResponseEntity<String> response = restTemplate.exchange(postGiud, HttpMethod.POST, request, String.class);
                     ResponseEntity<String> risposte = restTemplate.exchange(postEm, HttpMethod.POST, request, String.class);
+                    i = i + 1;
                 }
             } else {
                 newDati = checkRestControllers.generareChecking(restTemplate);

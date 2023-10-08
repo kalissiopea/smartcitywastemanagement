@@ -98,4 +98,10 @@ public class CheckingRestControllers {
     public String getUsername() {
         return jwtAuthenticationFilter.getUsername();
     }
+
+    @RequestMapping(value = "/cancella", method = RequestMethod.DELETE)
+    public int deleteByUsername (@RequestParam String username) {
+        int result = checkingRepository.deleteByUsername(username);
+        return result;
+    }
 }

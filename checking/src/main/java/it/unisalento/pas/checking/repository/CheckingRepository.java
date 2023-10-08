@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface CheckingRepository extends MongoRepository<Checking, String> {
 
     public Checking findByUsername(String username);
+    int deleteByUsername(String username);
 }
