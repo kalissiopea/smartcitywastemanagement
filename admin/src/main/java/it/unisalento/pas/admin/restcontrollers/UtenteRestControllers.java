@@ -14,6 +14,7 @@ import java.util.List;
 
 import static it.unisalento.pas.admin.configuration.SecurityConf.passwordEncoder;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.PATCH, RequestMethod.TRACE})
 @RestController
 @RequestMapping("admin/utenti") //ascolta in localhost:8080/admin/utenti
 //dovrebbe essere la pagina principale dell'admin dopo che viene fatto il login
@@ -125,7 +126,8 @@ public class UtenteRestControllers {
     }
 
     public String postApi(UtenteDTO utenteDTO) {
-        String url = "http://54.85.199.1:8081/utenti/aggiungi";
+//        String url = "http://54.85.199.1:8081/utenti/aggiungi";
+        String url = "http://login:8080/utenti/aggiungi";
 
         // Creazione dell'header della richiesta
         HttpHeaders headers = new HttpHeaders();

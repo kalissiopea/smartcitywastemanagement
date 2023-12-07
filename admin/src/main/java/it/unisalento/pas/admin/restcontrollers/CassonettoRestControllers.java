@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.PATCH, RequestMethod.TRACE})
 @RestController
 @RequestMapping("admin/cassonetti") //ascolta in localhost:8080/admin/cassonetti
 public class CassonettoRestControllers {
@@ -109,8 +110,10 @@ public class CassonettoRestControllers {
     }
 
     public String postApi(CassonettoDTO cassonettoDTO) {
-        String url = "http://34.193.105.215:8083/check/cassonetti/aggiungi";
-        String url1 = "http://34.237.180.161:8084/monitorare/cassonetti/aggiungi";
+//        String url = "http://34.193.105.215:8083/check/cassonetti/aggiungi";
+//        String url1 = "http://34.237.180.161:8084/monitorare/cassonetti/aggiungi";
+        String url = "http://checking:8080/check/cassonetti/aggiungi";
+        String url1 = "http://monitoraggio:8080/monitorare/cassonetti/aggiungi";
 
         // Creazione dell'header della richiesta
         HttpHeaders headers = new HttpHeaders();

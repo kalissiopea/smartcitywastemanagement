@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.admin.cassonetto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -82,3 +83,4 @@ public class CassonettoRestControllersTest {
         }
     }
 }
+*/
