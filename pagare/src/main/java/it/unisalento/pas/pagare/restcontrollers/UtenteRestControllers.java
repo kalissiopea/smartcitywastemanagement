@@ -12,6 +12,7 @@ import java.util.List;
 
 import static it.unisalento.pas.pagare.configuration.SecurityConf.passwordEncoder;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("cittadino/utenti")
 public class UtenteRestControllers {

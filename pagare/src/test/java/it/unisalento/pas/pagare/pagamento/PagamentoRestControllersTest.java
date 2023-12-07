@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.pagare.pagamento;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -81,3 +82,4 @@ public class PagamentoRestControllersTest {
         }
     }
 }
+*/

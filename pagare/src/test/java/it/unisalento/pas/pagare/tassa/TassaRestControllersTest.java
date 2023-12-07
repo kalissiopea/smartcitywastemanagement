@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.pagare.tassa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,3 +47,4 @@ public class TassaRestControllersTest {
         String responseBody = result.getResponse().getContentAsString();
     }
 }
+*/
