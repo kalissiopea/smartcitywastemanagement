@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.checking.utente;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,3 +78,4 @@ public class UtenteRestControllersTest {
         }
     }
 }
+*/

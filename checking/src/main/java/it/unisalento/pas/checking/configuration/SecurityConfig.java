@@ -33,11 +33,11 @@ public class SecurityConfig {
         return new RestTemplate();
     }
 
-/*    @Bean
+    @Bean
     DefaultSecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf().disable()
                 .build();
-    }*/
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {

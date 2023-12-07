@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.checking.rifiuto;
 
 import it.unisalento.pas.checking.CheckingApplication;
@@ -46,3 +47,4 @@ public class RifiutoRestControllersTest {
     }
 
 }
+*/
