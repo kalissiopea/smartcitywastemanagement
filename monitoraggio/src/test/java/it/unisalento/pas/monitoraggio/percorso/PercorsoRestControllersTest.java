@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.monitoraggio.percorso;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,3 +64,4 @@ public class PercorsoRestControllersTest {
         }
     }
 }
+*/

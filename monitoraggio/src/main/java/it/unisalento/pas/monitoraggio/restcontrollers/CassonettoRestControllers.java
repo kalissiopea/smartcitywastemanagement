@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("monitorare/cassonetti") //ascolta in localhost:8080/admin/cassonetti
 public class CassonettoRestControllers {

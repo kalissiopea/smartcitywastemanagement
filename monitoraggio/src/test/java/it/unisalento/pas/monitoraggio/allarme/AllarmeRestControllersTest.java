@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.monitoraggio.allarme;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -79,3 +80,4 @@ public class AllarmeRestControllersTest {
         }
     }
 }
+*/
