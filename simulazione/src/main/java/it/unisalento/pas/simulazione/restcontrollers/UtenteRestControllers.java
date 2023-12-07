@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("sim/utenti/")
 public class UtenteRestControllers {
@@ -52,7 +54,8 @@ public class UtenteRestControllers {
 
     //api che prende tutti i cittadini dal db dell'admin
     public List<UtenteDTO> getUtentiResponse() {
-        String url = "http://52.54.199.145:8080/admin/utenti/ruoli?ruolo=cittadino";
+//        String url = "http://52.54.199.145:8080/admin/utenti/ruoli?ruolo=cittadino";
+        String url = "http://admin:8080/admin/utenti/ruoli?ruolo=cittadino";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Header-Name", "Header-Value");
 

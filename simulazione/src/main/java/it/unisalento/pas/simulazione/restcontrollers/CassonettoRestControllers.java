@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("sim/cassonetti/")
 public class CassonettoRestControllers {
@@ -42,7 +43,8 @@ public class CassonettoRestControllers {
 
     //api per prelevare i cassonetti dall'admin
     public List<CassonettoDTO> getCassResponse() {
-        String url = "http://52.54.199.145:8080/admin/cassonetti/lista";
+//        String url = "http://52.54.199.145:8080/admin/cassonetti/lista";
+        String url = "http://admin:8080/admin/cassonetti/lista";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Header-Name", "Header-Value");
 
