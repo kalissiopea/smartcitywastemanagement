@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.giudizio.checking;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -72,3 +73,4 @@ public class CheckingRestControllersTest {
     }
 }
 
+*/

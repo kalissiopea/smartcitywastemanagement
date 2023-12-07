@@ -5,16 +5,14 @@ import it.unisalento.pas.giudizio.dto.GiudizioDTO;
 import it.unisalento.pas.giudizio.repository.GiudizioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("giudizio/consulta/")
 public class GiudizioRestControllers {
@@ -51,7 +49,8 @@ public class GiudizioRestControllers {
         giudizioDTO.setDate(new Date().toString());
         giudizio.setDate(giudizioDTO.getDate());
         giudizio = giudizioRepository.save(giudizio);
-        String url = "http://34.193.105.215:8083/check/giudizio/aggiungi";
+        //String url = "http://34.193.105.215:8083/check/giudizio/aggiungi";
+        String url = "http://checking:8080/check/giudizio/aggiungi";
         System.out.println(postApi(giudizioDTO, url));
         System.out.println("L'Id nuovo è: " + giudizio.getId());
     }
