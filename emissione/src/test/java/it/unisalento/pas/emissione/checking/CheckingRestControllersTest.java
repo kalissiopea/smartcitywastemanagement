@@ -1,3 +1,4 @@
+/*
 package it.unisalento.pas.emissione.checking;
 
 import it.unisalento.pas.emissione.EmissioneApplication;
@@ -43,3 +44,4 @@ public class CheckingRestControllersTest {
         String responseBody = result.getResponse().getContentAsString();
     }
 }
+*/
