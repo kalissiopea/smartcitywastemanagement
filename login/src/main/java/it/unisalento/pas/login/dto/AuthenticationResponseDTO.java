@@ -3,8 +3,11 @@ package it.unisalento.pas.login.dto;
 public class AuthenticationResponseDTO {
     private String jwt;
 
-    public AuthenticationResponseDTO(String jwt) {
+    private String ruolo;
+
+    public AuthenticationResponseDTO(String jwt, String ruolo) {
         this.jwt = jwt;
+        this.ruolo = ruolo;
     }
 
     public String getJwt() {
@@ -13,5 +16,13 @@ public class AuthenticationResponseDTO {
 
     public void setJwt(String jwt) {
         this.jwt = jwt;
+    }
+
+    public String getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
     }
 }
