@@ -101,29 +101,29 @@ public class ClienteRestControllers {
             //salviamo il nuovo utente con l'id aggiornato nel database
             newCliente = clienteRepository.save(newCliente);
             //salviamo il nuovo cliente anche nel microservizio admin
-            //String url = "http://52.54.199.145:8080/admin/utenti/aggiungi";
-            String url = "http://admin:8080/admin/utenti/aggiungi";
+            String url = "http://52.54.199.145:8080/admin/utenti/aggiungi";
+//            String url = "http://admin:8080/admin/utenti/aggiungi";
             System.out.print(postApi(clienteDTO, url));
             if(clienteDTO.getRuolo().equals("cittadino")) {
                 //checking, pagare
-//                String url1 = "http://34.193.105.215:8083/check/utenti/aggiungi";
-//                String url2 = "http://18.207.172.198:8082/cittadino/utenti/aggiungi";
-                String url1 = "http://checking:8080/check/utenti/aggiungi";
-                String url2 = "http://pagare:8080/cittadino/utenti/aggiungi";
+                String url1 = "http://34.193.105.215:8083/check/utenti/aggiungi";
+                String url2 = "http://18.207.172.198:8082/cittadino/utenti/aggiungi";
+//                String url1 = "http://checking:8080/check/utenti/aggiungi";
+//                String url2 = "http://pagare:8080/cittadino/utenti/aggiungi";
                 System.out.print(postApi(clienteDTO, url1));
                 System.out.print(postApi(clienteDTO, url2));
             } else if (clienteDTO.getRuolo().equals("impiegato")) {
                 //giudizio, emissione
-//                String url3 = "http://35.172.101.10:8085/giudizio/utenti/aggiungi";
-//                String url4 = "http://3.211.210.231:8086/cittadino/utenti/aggiungi";
-                String url3 = "http://giudizio:8080/giudizio/utenti/aggiungi";
-                String url4 = "http://emissione:8080/cittadino/utenti/aggiungi";
+                String url3 = "http://35.172.101.10:8085/giudizio/utenti/aggiungi";
+                String url4 = "http://3.211.210.231:8086/cittadino/utenti/aggiungi";
+//                String url3 = "http://giudizio:8080/giudizio/utenti/aggiungi";
+//                String url4 = "http://emissione:8080/cittadino/utenti/aggiungi";
                 System.out.println(postApi(clienteDTO, url3));
                 System.out.println(postApi(clienteDTO, url4));
             } else if (clienteDTO.getRuolo().equals("manager azienda rifiuti")) {
                 //monitoraggio
-//                String url5 = "http://34.237.180.161:8084/monitorare/utenti/aggiungi";
-                String url5 = "http://monitoraggio:8080/monitorare/utenti/aggiungi";
+                String url5 = "http://34.237.180.161:8084/monitorare/utenti/aggiungi";
+//                String url5 = "http://monitoraggio:8080/monitorare/utenti/aggiungi";
                 System.out.println(postApi(clienteDTO, url5));
             }
             System.out.println("L'Id del nuovo utente è: " + newCliente.getId());
@@ -162,24 +162,24 @@ public class ClienteRestControllers {
             System.out.println("L'Id del nuovo utente è: " + newCliente.getId());
             if(clienteDTO.getRuolo().equals("cittadino")) {
                 //checking, pagare
-//                String url1 = "http://34.193.105.215:8083/check/utenti/aggiungi";
-//                String url2 = "http://18.207.172.198:8082/cittadino/utenti/aggiungi";
-                String url1 = "http://checking:8080/check/utenti/aggiungi";
-                String url2 = "http://pagare:8080/cittadino/utenti/aggiungi";
+                String url1 = "http://34.193.105.215:8083/check/utenti/aggiungi";
+                String url2 = "http://18.207.172.198:8082/cittadino/utenti/aggiungi";
+//                String url1 = "http://checking:8080/check/utenti/aggiungi";
+//                String url2 = "http://pagare:8080/cittadino/utenti/aggiungi";
                 System.out.print(postApi(clienteDTO, url1));
                 System.out.print(postApi(clienteDTO, url2));
             } else if (clienteDTO.getRuolo().equals("impiegato")) {
                 //giudizio, emissione
-//                String url3 = "http://35.172.101.10:8085/giudizio/utenti/aggiungi";
-//                String url4 = "http://3.211.210.231:8086/cittadino/utenti/aggiungi";
-                String url3 = "http://giudizio:8080/giudizio/utenti/aggiungi";
-                String url4 = "http://emissione:8080/cittadino/utenti/aggiungi";
+                String url3 = "http://35.172.101.10:8085/giudizio/utenti/aggiungi";
+                String url4 = "http://3.211.210.231:8086/cittadino/utenti/aggiungi";
+//                String url3 = "http://giudizio:8080/giudizio/utenti/aggiungi";
+//                String url4 = "http://emissione:8080/cittadino/utenti/aggiungi";
                 System.out.println(postApi(clienteDTO, url3));
                 System.out.println(postApi(clienteDTO, url4));
             } else if (clienteDTO.getRuolo().equals("manager azienda rifiuti")) {
                 //monitoraggio
-//                String url5 = "http://34.237.180.161:8084/monitorare/utenti/aggiungi";
-                String url5 = "http://monitoraggio:8080/monitorare/utenti/aggiungi";
+                String url5 = "http://34.237.180.161:8084/monitorare/utenti/aggiungi";
+//                String url5 = "http://monitoraggio:8080/monitorare/utenti/aggiungi";
                 System.out.println(postApi(clienteDTO, url5));
             }
         }
