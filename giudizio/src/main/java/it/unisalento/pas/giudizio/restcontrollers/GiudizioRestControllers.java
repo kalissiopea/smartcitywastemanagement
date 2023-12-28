@@ -49,8 +49,8 @@ public class GiudizioRestControllers {
         giudizioDTO.setDate(new Date().toString());
         giudizio.setDate(giudizioDTO.getDate());
         giudizio = giudizioRepository.save(giudizio);
-        //String url = "http://34.193.105.215:8083/check/giudizio/aggiungi";
-        String url = "http://checking:8080/check/giudizio/aggiungi";
+        String url = "http://34.193.105.215:8083/check/giudizio/aggiungi";
+//        String url = "http://checking:8080/check/giudizio/aggiungi";
         System.out.println(postApi(giudizioDTO, url));
         System.out.println("L'Id nuovo è: " + giudizio.getId());
     }
