@@ -34,10 +34,10 @@ public class CheckingApplication {
             if(checks.isEmpty()) {
                 checks = checkRestControllers.generareChecking(restTemplate);
                 String postCheck = "http://localhost:8080/check/performance/aggiungi";
-//                String postGiud = "http://35.172.101.10:8085/giudizio/check/aggiungi";
-//                String postEm = "http://3.211.210.231:8086/cittadino/check/aggiungi";
-                String postGiud = "http://giudizio:8080/giudizio/check/aggiungi";
-                String postEm = "http://emissione:8080/cittadino/check/aggiungi";
+                String postGiud = "http://35.172.101.10:8085/giudizio/check/aggiungi";
+                String postEm = "http://3.211.210.231:8086/cittadino/check/aggiungi";
+//                String postGiud = "http://giudizio:8080/giudizio/check/aggiungi";
+//                String postEm = "http://emissione:8080/cittadino/check/aggiungi";
 
                 HttpHeaders headers1 = new HttpHeaders();
                 headers1.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
@@ -61,10 +61,10 @@ public class CheckingApplication {
                 for (CheckingDTO check : newDati) {
                     if(utenteDTO.getUsername().equals(check.getUsername())) {
                         String aggiorna = "http://localhost:8080/check/performance/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
-//                        String aggiornaGiud = "http://35.172.101.10:8085/giudizio/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
-//                        String aggiornaEm = "http://3.211.210.231:8086/cittadino/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
-                        String aggiornaGiud = "http://gudizio:8080/giudizio/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
-                        String aggiornaEm = "http://emissione:8080/cittadino/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
+                        String aggiornaGiud = "http://35.172.101.10:8085/giudizio/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
+                        String aggiornaEm = "http://3.211.210.231:8086/cittadino/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
+//                        String aggiornaGiud = "http://giudizio:8080/giudizio/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
+//                        String aggiornaEm = "http://emissione:8080/cittadino/check/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
                         ResponseEntity<String> risposta = restTemplate.exchange(aggiorna, HttpMethod.PUT, null, String.class);
                         ResponseEntity<String> response = restTemplate.exchange(aggiornaGiud, HttpMethod.PUT, null, String.class);
                         ResponseEntity<String> risposte = restTemplate.exchange(aggiornaEm, HttpMethod.PUT, null, String.class);

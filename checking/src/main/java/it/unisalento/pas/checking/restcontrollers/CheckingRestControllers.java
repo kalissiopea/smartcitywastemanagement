@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,6 +34,7 @@ public class CheckingRestControllers {
     @RequestMapping(value = "/mie", method = RequestMethod.GET)
     public CheckingDTO getByUsername() {
         String username = getUsername();
+        System.out.println(username);
         Checking checking = checkingRepository.findByUsername(username);
         CheckingDTO checkingDTO = new CheckingDTO();
         checkingDTO.setId(checking.getId());

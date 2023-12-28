@@ -2,8 +2,10 @@ package it.unisalento.pas.checking.configuration;
 
 import it.unisalento.pas.checking.security.JwtAuthenticationFilter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -60,4 +62,14 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return httpSecurity.build();
     }
+
+//    @Bean
+//    public FilterRegistrationBean<JwtAuthenticationFilter> jwtFilterRegistration(JwtAuthenticationFilter filter) {
+//        FilterRegistrationBean<JwtAuthenticationFilter> registration = new FilterRegistrationBean<>();
+//        registration.setFilter(filter);
+//        // Impostare un valore inferiore all'ordine dei filtri desiderato per farlo eseguire prima
+//        registration.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        return registration;
+//    }
+
 }

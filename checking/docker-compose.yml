@@ -13,7 +13,7 @@ services:
       - check-db
     networks:
       - check-net
-      - smartcitywastemanagement_main-net
+#      - smartcitywastemanagement_main-net
     volumes:
       - ./build/libs/checking-0.0.1-SNAPSHOT.jar:/app/app.jar
     working_dir: /app
@@ -29,7 +29,7 @@ networks:
   check-net:
     driver:
       "bridge"
-  smartcitywastemanagement_main-net:
-    driver:
-      "bridge"
-    external: true
+#  smartcitywastemanagement_main-net:
+#    driver:
+#      "bridge"
+#    external: true

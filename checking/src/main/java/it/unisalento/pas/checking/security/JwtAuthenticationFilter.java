@@ -26,7 +26,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UtenteDetailService customerUserDetailsService ;
 
-    String username = null;
+    String username;
 
     public String getUsername() {
         return username;
