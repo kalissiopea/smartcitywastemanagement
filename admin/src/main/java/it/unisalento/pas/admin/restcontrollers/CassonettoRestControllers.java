@@ -110,10 +110,10 @@ public class CassonettoRestControllers {
     }
 
     public String postApi(CassonettoDTO cassonettoDTO) {
-//        String url = "http://34.193.105.215:8083/check/cassonetti/aggiungi";
-//        String url1 = "http://34.237.180.161:8084/monitorare/cassonetti/aggiungi";
-        String url = "http://checking:8080/check/cassonetti/aggiungi";
-        String url1 = "http://monitoraggio:8080/monitorare/cassonetti/aggiungi";
+        String url = "http://34.193.105.215:8083/check/cassonetti/aggiungi";
+        String url1 = "http://34.237.180.161:8084/monitorare/cassonetti/aggiungi";
+//        String url = "http://checking:8080/check/cassonetti/aggiungi";
+//        String url1 = "http://monitoraggio:8080/monitorare/cassonetti/aggiungi";
 
         // Creazione dell'header della richiesta
         HttpHeaders headers = new HttpHeaders();

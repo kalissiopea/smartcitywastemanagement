@@ -126,8 +126,8 @@ public class UtenteRestControllers {
     }
 
     public String postApi(UtenteDTO utenteDTO) {
-//        String url = "http://54.85.199.1:8081/utenti/aggiungi";
-        String url = "http://login:8080/utenti/aggiungi";
+        String url = "http://54.85.199.1:8081/utenti/aggiungi";
+//        String url = "http://login:8080/utenti/aggiungi";
 
         // Creazione dell'header della richiesta
         HttpHeaders headers = new HttpHeaders();
