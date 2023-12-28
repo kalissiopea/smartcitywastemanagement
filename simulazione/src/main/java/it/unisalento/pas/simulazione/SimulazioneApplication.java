@@ -92,21 +92,21 @@ public class SimulazioneApplication {
                     RifiutoDTO rifiutoDTO = completableFuture.get();
                     System.out.println(rifiutoDTO.getId() + " " + rifiutoDTO.getUsername() + " " + rifiutoDTO.getLuogo() + " " + rifiutoDTO.getTipo() + " " + rifiutoDTO.getPeso());
 
-//                    String postRif = "http://localhost:8080/sim/rifiuti/inserisci";
-//                    String postCheck = "http://34.193.105.215:8083/check/rifiuti/inserisci";
-//
-//                    String updateCass = "http://localhost:8080/sim/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
-//                    String updateCheck = "http://34.193.105.215:8083/check/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
-//                    String updateAdmin = "http://52.54.199.145:8080/admin/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
-//                    String updateMon = "http://34.237.180.161:8084/monitorare/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
-
                     String postRif = "http://localhost:8080/sim/rifiuti/inserisci";
-                    String postCheck = "http://checking:8080/check/rifiuti/inserisci";
+                    String postCheck = "http://34.193.105.215:8083/check/rifiuti/inserisci";
 
                     String updateCass = "http://localhost:8080/sim/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
-                    String updateCheck = "http://checking:8080/check/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
-                    String updateAdmin = "http://admin:8080/admin/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
-                    String updateMon = "http://monitoraggio:8080/monitorare/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+                    String updateCheck = "http://34.193.105.215:8083/check/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+                    String updateAdmin = "http://52.54.199.145:8080/admin/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+                    String updateMon = "http://34.237.180.161:8084/monitorare/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+
+//                    String postRif = "http://localhost:8080/sim/rifiuti/inserisci";
+//                    String postCheck = "http://checking:8080/check/rifiuti/inserisci";
+//
+//                    String updateCass = "http://localhost:8080/sim/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+//                    String updateCheck = "http://checking:8080/check/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+//                    String updateAdmin = "http://admin:8080/admin/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
+//                    String updateMon = "http://monitoraggio:8080/monitorare/cassonetti/aggiornaStato/" + rifiutoDTO.getLuogo() + "/" + rifiutoDTO.getPeso();
 
                     HttpHeaders headers1 = new HttpHeaders();
                     headers1.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
