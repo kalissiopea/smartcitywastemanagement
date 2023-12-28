@@ -63,12 +63,12 @@ public class PercorsoRestControllers {
         String[] luoghi = dividi(percorsoDTO.getPercorso());
         for(String luogo : luoghi) {
             String aggiorna = "http://localhost:8080/monitorare/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
-//            String aggiornaAdmin = "http://52.54.199.145:8080/admin/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
-//            String aggiornaCheck = "http://34.193.105.215:8083/check/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
-//            String aggiornaSim = "http://54.211.179.82:8000/sim/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
-            String aggiornaAdmin = "http://admin:8080/admin/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
-            String aggiornaCheck = "http://checking:8080/check/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
-            String aggiornaSim = "http://simulazione:8000/sim/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
+            String aggiornaAdmin = "http://52.54.199.145:8080/admin/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
+            String aggiornaCheck = "http://34.193.105.215:8083/check/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
+            String aggiornaSim = "http://54.211.179.82:8000/sim/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
+//            String aggiornaAdmin = "http://admin:8080/admin/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
+//            String aggiornaCheck = "http://checking:8080/check/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
+//            String aggiornaSim = "http://simulazione:8000/sim/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
             ResponseEntity<String> risposta1 = restTemplate.exchange(aggiorna, HttpMethod.PUT, null, String.class);
             ResponseEntity<String> risposta2 = restTemplate.exchange(aggiornaAdmin, HttpMethod.PUT, null, String.class);
             ResponseEntity<String> risposta3 = restTemplate.exchange(aggiornaCheck, HttpMethod.PUT, null, String.class);
