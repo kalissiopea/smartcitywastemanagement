@@ -77,8 +77,8 @@ public class TassaRestControllers {
         tassaDTO.setData(formattedDate);
         newTassa.setData(formattedDate);
         newTassa = tassaRepository.save(newTassa);
-//        String url = "http://18.207.172.198:8082/cittadino/tassa/aggiungi";
-        String url = "http://pagare:8080/cittadino/tassa/aggiungi";
+        String url = "http://18.207.172.198:8082/cittadino/tassa/aggiungi";
+//        String url = "http://pagare:8080/cittadino/tassa/aggiungi";
         System.out.println(postApi(tassaDTO, url));
         System.out.println("L'Id nuovo è: " + newTassa.getId());
     }
