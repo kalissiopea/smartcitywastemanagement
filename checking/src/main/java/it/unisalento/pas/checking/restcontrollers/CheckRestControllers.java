@@ -99,32 +99,35 @@ public class CheckRestControllers {
     }
 
 
-    public List<CheckingDTO> generareChecking(RestTemplate restTemplate) {
+    public List<CheckingDTO> generareChecking(RestTemplate restTemplate, String username) {
         List<RifiutoDTO> rifiutiDTO = getRifiuti(restTemplate);
         List<CassonettoDTO> cassonettiDTO = getCassonetti(restTemplate);
         List<UtenteDTO> utentiDTO = getUtenti(restTemplate);
         List<CheckingDTO> checkingsDTO = new ArrayList<>();
 
         for(UtenteDTO utenteDTO : utentiDTO) {
-            int punteggio = 0;
-            int rifiuti = 0;
-            CheckingDTO checkingDTO = new CheckingDTO();
-            for(RifiutoDTO rifiutoDTO : rifiutiDTO) {
-                for (CassonettoDTO cassonettoDTO : cassonettiDTO) {
-                    if(utenteDTO.getUsername().equals(rifiutoDTO.getUsername()) && rifiutoDTO.getLuogo().equals(cassonettoDTO.getLuogo())) {
-                        checkingDTO.setUsername(utenteDTO.getUsername());
-                        rifiuti = rifiuti + 1;
-                        if(rifiutoDTO.getTipo().equals(cassonettoDTO.getTipo())) {
-                            punteggio = punteggio + 1;
-                        } else {
-                            punteggio = punteggio - 1;
+            if(utenteDTO.getUsername().equals(username)) {
+                int punteggio = 0;
+                int rifiuti = 0;
+                CheckingDTO checkingDTO = new CheckingDTO();
+                for(RifiutoDTO rifiutoDTO : rifiutiDTO) {
+                    for (CassonettoDTO cassonettoDTO : cassonettiDTO) {
+                        if(utenteDTO.getUsername().equals(rifiutoDTO.getUsername()) && rifiutoDTO.getLuogo().equals(cassonettoDTO.getLuogo())) {
+                            checkingDTO.setUsername(utenteDTO.getUsername());
+                            rifiuti = rifiuti + 1;
+                            if(rifiutoDTO.getTipo().equals(cassonettoDTO.getTipo())) {
+                                punteggio = punteggio + 1;
+                            } else {
+                                punteggio = punteggio - 1;
+                            }
                         }
                     }
                 }
+                checkingDTO.setRifiuti(rifiuti);
+                checkingDTO.setPunteggio(punteggio);
+                checkingsDTO.add(checkingDTO);
             }
-            checkingDTO.setRifiuti(rifiuti);
-            checkingDTO.setPunteggio(punteggio);
-            checkingsDTO.add(checkingDTO);
+
         }
         return checkingsDTO;
     }

@@ -23,16 +23,16 @@ public class CheckingApplication {
         RestTemplate restTemplate = context.getBean(SecurityConfig.class).restTemplate();
 
         List<UtenteDTO> utentiDTO = checkRestControllers.getUtenti(restTemplate);
-        List<CheckingDTO> checks = new ArrayList<>();
+        //List<CheckingDTO> checks = new ArrayList<>();
         List<CheckingDTO> newDati = new ArrayList<>();
 
         int i = 1;
         String identity = Integer.toString(i);
         for(UtenteDTO utenteDTO : utentiDTO) {
-            checks = checkRestControllers.getCheckings(utenteDTO.getUsername(), restTemplate);
+            List<CheckingDTO> checks = checkRestControllers.getCheckings(utenteDTO.getUsername(), restTemplate);
 
             if(checks.isEmpty()) {
-                checks = checkRestControllers.generareChecking(restTemplate);
+                checks = checkRestControllers.generareChecking(restTemplate, utenteDTO.getUsername());
                 String postCheck = "http://localhost:8080/check/performance/aggiungi";
                 String postGiud = "http://35.172.101.10:8085/giudizio/check/aggiungi";
                 String postEm = "http://3.211.210.231:8086/cittadino/check/aggiungi";
@@ -57,7 +57,7 @@ public class CheckingApplication {
                     i = i + 1;
                 }
             } else {
-                newDati = checkRestControllers.generareChecking(restTemplate);
+                newDati = checkRestControllers.generareChecking(restTemplate, utenteDTO.getUsername());
                 for (CheckingDTO check : newDati) {
                     if(utenteDTO.getUsername().equals(check.getUsername())) {
                         String aggiorna = "http://localhost:8080/check/performance/aggiornaCheck/" + check.getUsername() + "/" + check.getPunteggio() + "/" + check.getRifiuti();
