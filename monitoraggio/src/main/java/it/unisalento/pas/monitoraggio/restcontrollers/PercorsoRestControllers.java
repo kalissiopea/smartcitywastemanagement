@@ -65,7 +65,7 @@ public class PercorsoRestControllers {
             String aggiorna = "http://localhost:8080/monitorare/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
             String aggiornaAdmin = "http://52.54.199.145:8080/admin/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
             String aggiornaCheck = "http://34.193.105.215:8083/check/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
-            String aggiornaSim = "http://54.211.179.82:8000/sim/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
+            String aggiornaSim = "http://54.211.179.82:8087/sim/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
 //            String aggiornaAdmin = "http://admin:8080/admin/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
 //            String aggiornaCheck = "http://checking:8080/check/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
 //            String aggiornaSim = "http://simulazione:8000/sim/cassonetti/aggiornaStato/" + luogo + "/" + 0.0;
