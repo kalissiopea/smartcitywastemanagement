@@ -1,0 +1,10 @@
+<div class="container">
+    <h1> Queste sono le tue performance </h1>
+    <div *ngIf="checking | async as check">
+        <h2>Checking n. {{check.id}}</h2>
+        <p>Lo username è {{check.username}}</p>
+        <p>Il numero dei rifiuti è {{check.rifiuti}}</p>
+        <p>Il punteggio è {{check.punteggio}}</p>
+    </div>
+  <button class="key" (click)="onSubmit()">Torna Indietro</button>
+</div>

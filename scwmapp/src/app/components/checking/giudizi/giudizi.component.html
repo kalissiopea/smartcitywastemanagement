@@ -1,0 +1,13 @@
+<div class="container">
+    <h1> Questi sono i tuoi giudizi </h1>
+    <div *ngIf="giudizi | async as giuds">
+        <div *ngFor="let giudizio of giuds">
+        <h2>Giudizio n. {{giudizio.id}}</h2>
+            <p>Lo username è {{giudizio.username}}</p>
+            <p>Il numero dei rifiuti è {{giudizio.giudizio}}</p>
+            <p>Il punteggio è {{giudizio.punteggio}}</p>
+            <p>Il punteggio è {{giudizio.date}}</p>
+        </div>
+    </div>
+  <button class="key" (click)="onSubmit()">Torna Indietro</button>
+</div>

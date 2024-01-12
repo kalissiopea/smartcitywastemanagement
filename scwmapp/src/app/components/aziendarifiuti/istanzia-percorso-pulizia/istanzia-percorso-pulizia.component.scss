@@ -1,0 +1,20 @@
+.percorso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center; /* enables centering text inside div as well */
+}
+
+.key {
+  background: lightpink;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: hotpink;
+}
+
+p {
+  color: lightpink;
+}

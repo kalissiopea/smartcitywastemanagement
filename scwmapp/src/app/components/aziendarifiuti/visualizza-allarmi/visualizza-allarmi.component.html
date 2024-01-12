@@ -1,0 +1,14 @@
+<div class="container">
+    <h1> Questi sono gli allarmi</h1>
+    <div *ngIf="allarmi | async as allarmi">
+        <div *ngFor="let allarme of allarmi">
+            <h2>Allarme n. {{allarme.id}}</h2>
+            <p>In data {{allarme.date}}</p>
+            <p>In luogo {{allarme.luogo}}</p>
+            <p>Lo stato è {{allarme.stato}}</p>
+        </div>
+    </div>
+    <button class="key" (click)="onSubmit0()">Home</button>
+
+
+</div>

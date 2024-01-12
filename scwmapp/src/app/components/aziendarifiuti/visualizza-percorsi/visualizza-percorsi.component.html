@@ -1,0 +1,13 @@
+<div class="container">
+  <h1> Questi sono i percorsi</h1>
+  <div *ngIf="percorsi | async as percors">
+    <div *ngFor="let percor of percors">
+      <h2>Percorso n. {{percor.id}}</h2>
+      <p>In data {{percor.date}}</p>
+      <p>Percorso: {{percor.percorso}}</p>
+    </div>
+  </div>
+  <button class="key" (click)="onSubmit0()">Home</button>
+
+
+</div>
