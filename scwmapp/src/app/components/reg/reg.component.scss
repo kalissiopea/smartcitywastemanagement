@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center; /* enables centering text inside div as well */
+}
+
+.key {
+  background: lightpink;
+}
+
+h1 {
+  color: hotpink;
+}
+
+p {
+  color: lightpink;
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  margin-right: 10px;  // Spazio tra il label e l'input
+}
+
+.password-input {
+  flex-grow: 1;
+}
+
+.password-btn {
+  margin-left: 10px;
+}
+
+.label1 {
+  margin-top: 10px;
+}
