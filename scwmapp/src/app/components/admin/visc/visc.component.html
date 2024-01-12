@@ -1,0 +1,12 @@
+<div class="container">
+    <h1> Questi sono tutti i cassonetti</h1>
+    <div *ngIf="cassonetti | async as cass">
+        <div *ngFor="let cassonetto of cass">
+            <h2>Cassonetto n. {{cassonetto.id}}</h2>
+            <p>Il luogo è {{cassonetto.luogo}}</p>
+            <p>Il tipo è {{cassonetto.tipo}}</p>
+            <p>Lo stato è {{cassonetto.stato}}</p>
+        </div>
+    </div>
+  <button class="key" (click)="onSubmit()">Torna Indietro</button>
+</div>

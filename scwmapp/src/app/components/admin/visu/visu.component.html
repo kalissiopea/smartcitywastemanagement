@@ -1,0 +1,17 @@
+<div class="container">
+    <h1> Questi sono tutti gli utenti</h1>
+    <div *ngIf="utenti | async as users">
+        <div *ngFor="let utente of users">
+            <h2>Utente n. {{utente.id}}</h2>
+            <p>Il nome è {{utente.nome}}</p>
+            <p>Il cognome è {{utente.cognome}}</p>
+            <p>Lo email è {{utente.email}}</p>
+            <p>L'età è {{utente.eta}}</p>
+            <p>Lo username è {{utente.username}}</p>
+            <p>Il ruolo è {{utente.ruolo}}</p>
+            <p>L'indirizzo è {{utente.indirizzo}}</p>
+            <p>La card è {{utente.card}}</p>
+        </div>
+    </div>
+  <button class="key" (click)="onSubmit()">Torna Indietro</button>
+</div>

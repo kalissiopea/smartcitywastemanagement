@@ -1,0 +1,13 @@
+<div class="container">
+    <h1> Aggiungi Cassonetto </h1>
+    <label class="label">ID:</label> <br>
+    <input type="text" [(ngModel)]="cassonetto.id"> <br>
+    <label class="label">LUOGO:</label> <br>
+    <input type="text" [(ngModel)]="cassonetto.luogo"> <br>
+    <label class="label">TIPO:</label> <br>
+    <input type="text" [(ngModel)]="cassonetto.tipo"> <br>
+    <label class="label">STATO:</label> <br>
+    <input type="text" [(ngModel)]="cassonetto.stato"> <br>
+    <button class="key" (click)="onSubmit()">Aggiungi</button>
+    <button class="key" (click)="onSubmit1()">Torna Indietro</button>
+</div>
