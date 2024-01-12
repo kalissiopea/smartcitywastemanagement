@@ -1,0 +1,14 @@
+<div class="pagamento" xmlns="http://www.w3.org/1999/html">
+  <h1>Inserisci username, card, data, costo  della tassa che desideri pagare</h1>
+    <label class="label"> ID: </label> <br>
+    <input type="text" (change)="onSelectChange()" [(ngModel)]="idTassa"> <br>
+
+    <label class="label"> Username: </label> <br>
+    <input type="text" [(ngModel)]="pagamento.username"> <br>
+    <label class="label"> Card: </label> <br>
+    <input type="text" [(ngModel)]="pagamento.card"> <br>
+    <label class="label"> Costo: </label> <br>
+    <input type="text" [(ngModel)]="pagamento.costo" [value]="importo"> <br>
+ <button class="key" (click)="onSubmit()">Paga</button>
+  <button class="key" (click)="onSubmit1()">Torna alla home</button>
+</div>

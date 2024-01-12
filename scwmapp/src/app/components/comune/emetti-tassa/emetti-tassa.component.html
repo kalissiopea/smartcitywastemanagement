@@ -1,0 +1,11 @@
+
+<div class="pagamento">
+  <h1>Inserisci ID della tassa e username (del cittadino) per emettere una tassa</h1>
+  <label class="label"> ID: </label> <br>
+  <input type="text" [(ngModel)]="tassa.id"> <br>
+  <label class="label"> Username: </label> <br>
+  <input type="text" [(ngModel)]="tassa.username"> <br>
+  <button class="key" (click)="onSubmit()">Emetti Tassa</button>
+  <button class="key" (click)="onSubmit1()">Torna alla home</button>
+</div>
+

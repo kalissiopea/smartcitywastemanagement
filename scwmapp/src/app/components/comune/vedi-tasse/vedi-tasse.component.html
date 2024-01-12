@@ -1,0 +1,12 @@
+<div class="container">
+  <h1> Queste sono tutte le perfomance</h1>
+  <div *ngIf="tasse | async as taxes">
+    <div *ngFor="let tax of taxes">
+      <h2>Tassa n. {{tax.id}}</h2>
+      <p>Lo username è {{tax.username}}</p>
+      <p>La data è {{tax.data}}</p>
+      <p>L'importo è {{tax.importo}}</p>
+    </div>
+  </div>
+  <button class="key" (click)="onSubmit()">Torna Indietro</button>
+</div>

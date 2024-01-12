@@ -1,0 +1,14 @@
+<div class="container">
+    <h1> Queste sono le tue tasse </h1>
+    <div *ngIf="tasse | async as taxes">
+        <div *ngFor="let tassa of taxes">
+        <h2>Tassa n. {{tassa.id}}</h2>
+            <p>Lo username è {{tassa.username}}</p>
+            <p>L'importo è {{tassa.importo}}</p>
+            <p>La data è {{tassa.data}}</p>
+        </div>
+    </div>
+    <button class="key" (click)="onSubmit0()">Home</button>
+    <button class="key" (click)="onSubmit1()">Pagamenti</button>
+    <button class="key" (click)="onSubmit2()">Paga un importo</button>
+</div>

@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center; /* enables centering text inside div as well */
+}
+
+.key {
+  background: lightpink;
+}
+
+h1 {
+  color: hotpink;
+}
+
+h2 {
+  color: hotpink;
+}
+
+p {
+  color: black;
+}

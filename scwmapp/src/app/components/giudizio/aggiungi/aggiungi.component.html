@@ -1,0 +1,12 @@
+<div class="container">
+    <h1> Esprimi un giudizio </h1>
+    <label class="label">ID:</label> <br>
+    <input type="text" [(ngModel)]="giudizio.id"> <br>
+    <label class="label">USERNAME:</label> <br>
+    <input type="text" [(ngModel)]="giudizio.username"> <br>
+    <label class="label">GIUDIZIO:</label> <br>
+    <input type="text" [(ngModel)]="giudizio.giudizio"> <br>
+    <label class="label">PUNTEGGIO:</label> <br>
+    <input type="text" [(ngModel)]="giudizio.punteggio"> <br>
+    <button class="key" (click)="onSubmit()">Aggiungi</button>
+</div>

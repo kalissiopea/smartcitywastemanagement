@@ -1,0 +1,16 @@
+<div class="container">
+    <h1> Questi sono i tuoi pagamenti </h1>
+    <div *ngIf="pagamenti | async as pagamenti">
+        <div *ngFor="let pagamento of pagamenti">
+            <h2>Pagamento n. {{pagamento.id}}</h2>
+            <p>Lo username è {{pagamento.username}}</p>
+            <p>L'importo è {{pagamento.costo}}</p>
+            <p>La data è {{pagamento.data}}</p>
+            <p>La card è {{pagamento.card}}</p>
+            <p>Lo stato è {{pagamento.stato}}</p>
+        </div>
+    </div>
+    <button class="key" (click)="onSubmit0()">Home</button>
+    <button class="key" (click)="onSubmit1()">Tasse</button>
+    <button class="key" (click)="onSubmit2()">Paga un importo</button>
+</div>
