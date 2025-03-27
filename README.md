@@ -1,2 +1,3 @@
 # smartcitywastemanagement
-There are 10 branches, each of which is dedicated to a microservice.
+There are 10 branches.
+Main branch excluded, each branch is dedicated to a different microservice.
